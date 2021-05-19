@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieCatalogue">
+        <activity android:name=".ui.tvshow.detail.DetailTvShowActivity"></activity>
+        <activity android:name=".ui.movie.detail.DetailMovieActivity" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/SplashTheme">

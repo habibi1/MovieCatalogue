@@ -5,4 +5,16 @@
     <dimen name="appbar_padding">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="width_poster">180dp</dimen>
+    <dimen name="height_poster">270dp</dimen>
+    <dimen name="card_radius">15dp</dimen>
+    <dimen name="pading_normal">16dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <dimen name="padding_small">4dp</dimen>
+    <dimen name="size_title">18sp</dimen>
+    <dimen name="size_sub_title">16sp</dimen>
+    <dimen name="zero_dp">0dp</dimen>
+    <dimen name="width_poster_list">70dp</dimen>
+    <dimen name="height_poster_list">105dp</dimen>
 </resources>

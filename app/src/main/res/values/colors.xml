@@ -19,4 +19,5 @@
     <color name="dark_secondary_primary">#A1680D</color>
     <color name="dark_secondary_primary_light">#D69640</color>
     <color name="dark_secondary_primary_dark">#6E3D00</color>
+    <color name="placeholder">#6FB6B6B6</color>
 </resources>

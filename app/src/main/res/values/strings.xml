@@ -2,4 +2,16 @@
     <string name="app_name">MovieCatalogue</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="judul">Judul</string>
+    <string name="genre">Genre</string>
+    <string name="durasi">Durasi</string>
+    <string name="rilis">Rilis</string>
+    <string name="usia">Usia</string>
+    <string name="popularitas">Popularitas</string>
+    <string name="rating">Rating</string>
+    <string name="vote">Vote</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="movie">Movie</string>
+    <string name="tv_show">TV Show</string>
+    <string name="data_kosong">Data Kosong</string>
 </resources>
