@@ -10,5 +10,7 @@ class TvShowEntity (
     var popularity: Double,
     var name: String,
     var voteAverage: Double,
-    var voteCount: Int
+    var voteCount: Int,
+    var durasi: String,
+    var jumlahEpisode: String
 )

@@ -11,18 +11,14 @@ import com.project.moviecatalogue.data.TvShowEntity
 import com.project.moviecatalogue.databinding.ItemMovieBinding
 import com.project.moviecatalogue.ui.tvshow.detail.DetailTvShowActivity
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
 
     private var listTvShows = ArrayList<TvShowEntity>()
 
-    fun setTvShows(movies: List<TvShowEntity>?) {
-        if (movies == null) return
+    fun setTvShows(tvShows: List<TvShowEntity>?) {
+        if (tvShows == null) return
         this.listTvShows.clear()
-        this.listTvShows.addAll(movies)
+        this.listTvShows.addAll(tvShows)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,7 +30,6 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
                 false
             )
         )
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -50,6 +45,9 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
             with(binding) {
                 tvTitle.text = tvShows.name
                 tvGenre.text = tvShows.genreIds
+                tvRating.text = tvShows.voteAverage.toString()
+                tvUsia.text = tvShows.durasi
+
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
                     intent.putExtra(DetailTvShowActivity.EXTRA_DATA, tvShows.id)

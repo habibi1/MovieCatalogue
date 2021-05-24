@@ -10,5 +10,7 @@ class MovieEntity (
     var popularity: Double,
     var name: String,
     var voteAverage: Double,
-    var voteCount: Int
+    var voteCount: Int,
+    var usia: String,
+    var durasi: String
 )

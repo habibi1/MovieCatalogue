@@ -11,9 +11,7 @@ import com.project.moviecatalogue.data.MovieEntity
 import com.project.moviecatalogue.databinding.ItemMovieBinding
 import com.project.moviecatalogue.ui.movie.detail.DetailMovieActivity
 
-import com.project.moviecatalogue.ui.tvshow.detail.DetailTvShowActivity
-
-class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     private var listMovies = ArrayList<MovieEntity>()
 
@@ -48,6 +46,8 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
             with(binding) {
                 tvTitle.text = movie.name
                 tvGenre.text = movie.genreIds
+                tvRating.text = movie.voteAverage.toString()
+                tvUsia.text = movie.durasi
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailMovieActivity::class.java)
                     intent.putExtra(DetailMovieActivity.EXTRA_DATA, movie.id)

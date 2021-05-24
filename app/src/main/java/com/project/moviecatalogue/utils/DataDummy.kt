@@ -20,7 +20,9 @@ object DataDummy {
                 1306.109,
                 "The Falcon and the Winter Soldier",
                 7.9,
-                5484
+                5484,
+                "50 Menit",
+                "6"
             )
         )
 
@@ -35,7 +37,9 @@ object DataDummy {
                 1182.741,
                 "Jupiter's Legacy",
                 7.5,
-                170
+                170,
+                "45 Menit",
+                "8"
             )
         )
 
@@ -50,7 +54,9 @@ object DataDummy {
                 1055.08,
                 "Invincible",
                 8.9,
-                1611
+                1611,
+                "45 Menit",
+                "8"
             )
         )
 
@@ -65,7 +71,9 @@ object DataDummy {
                 1045.03,
                 "The Good Doctor",
                 8.6,
-                8365
+                8365,
+                "43 Menit",
+                "20"
             )
         )
 
@@ -80,7 +88,9 @@ object DataDummy {
                 1026.489,
                 "The Flash",
                 7.7,
-                7596
+                7596,
+                "44 Menit",
+                "13"
             )
         )
 
@@ -95,7 +105,9 @@ object DataDummy {
                 916.35,
                 "The Bad Batch",
                 9.0,
-                154
+                154,
+                "1 Jam 15 Menit",
+                "16"
             )
         )
 
@@ -110,7 +122,9 @@ object DataDummy {
                 733.781,
                 "Grey's Anatomy",
                 8.2,
-                6039
+                6039,
+                "43 Menit",
+                "17"
             )
         )
 
@@ -125,7 +139,9 @@ object DataDummy {
                 623.818,
                 "Lucifer",
                 8.5,
-                8564
+                8564,
+                "45 Menit",
+                "16"
             )
         )
 
@@ -140,7 +156,9 @@ object DataDummy {
                 588.123,
                 "Riverdale",
                 8.6,
-                11241
+                11241,
+                "45 Menit",
+                "11"
             )
         )
 
@@ -155,7 +173,9 @@ object DataDummy {
                 560.025,
                 "Selena: The Series",
                 7.5,
-                1307
+                1307,
+                "40 Menit",
+                "18"
             )
         )
 
@@ -176,7 +196,9 @@ object DataDummy {
                 4547.446,
                 "Tom Clancy's Without Remorse",
                 7.3,
-                829
+                829,
+                "Remaja",
+                "1 Jam 49 Menit"
             )
         )
 
@@ -191,7 +213,9 @@ object DataDummy {
                 3345.294,
                 "Mortal Kombat",
                 7.7,
-                2429
+                2429,
+                "Remaja",
+                "1 Jam 50 Menit"
             )
         )
 
@@ -206,7 +230,9 @@ object DataDummy {
                 1833.731,
                 "Godzilla vs. Kong",
                 8.1,
-                5455
+                5455,
+                "PG-13",
+                "1 Jam 53 Menit"
             )
         )
 
@@ -221,7 +247,9 @@ object DataDummy {
                 1803.573,
                 "Nobody",
                 8.4,
-                1423
+                1423,
+                "Remaja",
+                "1 Jam 32 Menit"
             )
         )
 
@@ -236,7 +264,9 @@ object DataDummy {
                 1396.571,
                 "22 vs. Earth",
                 7.2,
-                66
+                66,
+                "G",
+                "9 Menit"
             )
         )
 
@@ -251,7 +281,9 @@ object DataDummy {
                 1346.949,
                 "Vanquish",
                 6.4,
-                81
+                81,
+                "Remaja",
+                "1 Jam 36 Menit"
             )
         )
 
@@ -266,7 +298,9 @@ object DataDummy {
                 1265.474,
                 "The Unholy",
                 5.6,
-                84
+                84,
+                "PG-13",
+                "1 Jam 39 Menit"
             )
         )
 
@@ -281,7 +315,9 @@ object DataDummy {
                 1126.642,
                 "Zack Snyder's Justice League",
                 8.5,
-                5419
+                5419,
+                "Remaja",
+                "4 Jam 2 Menit"
             )
         )
 
@@ -296,7 +332,9 @@ object DataDummy {
                 1122.478,
                 "Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train",
                 8.4,
-                926
+                926,
+                "Remaja",
+                "1 Jam 57 Menit"
             )
         )
 
@@ -311,7 +349,9 @@ object DataDummy {
                 1116.416,
                 "Miraculous World: Shanghai – The Legend of Ladydragon",
                 7.9,
-                297
+                297,
+                "U",
+                "52 Menit"
             )
         )
 

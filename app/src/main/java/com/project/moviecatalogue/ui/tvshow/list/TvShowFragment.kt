@@ -9,11 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.moviecatalogue.databinding.FragmentTvShowBinding
 import com.project.moviecatalogue.ui.tvshow.viewmodel.TvShowViewModel
-import com.project.moviecatalogue.utils.DataDummy
 
-/**
- * A fragment representing a list of Items.
- */
 class TvShowFragment : Fragment() {
 
     private lateinit var fragmentTvShowBinding: FragmentTvShowBinding
@@ -21,7 +17,7 @@ class TvShowFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         fragmentTvShowBinding = FragmentTvShowBinding.inflate(layoutInflater, container, false)
         return fragmentTvShowBinding.root
     }

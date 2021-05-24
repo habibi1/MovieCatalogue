@@ -10,9 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.moviecatalogue.databinding.FragmentMovieBinding
 import com.project.moviecatalogue.ui.movie.viewmodel.MovieViewModel
 
-/**
- * A fragment representing a list of Items.
- */
 class MovieFragment : Fragment() {
 
     lateinit var fragmentMovieBinding: FragmentMovieBinding
@@ -20,7 +17,7 @@ class MovieFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         fragmentMovieBinding = FragmentMovieBinding.inflate(layoutInflater, container, false)
         return fragmentMovieBinding.root
     }

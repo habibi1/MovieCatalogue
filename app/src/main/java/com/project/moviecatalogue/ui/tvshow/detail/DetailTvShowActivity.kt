@@ -7,9 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.project.moviecatalogue.R
 import com.project.moviecatalogue.databinding.ActivityDetailTvShowBinding
-import com.project.moviecatalogue.ui.movie.detail.DetailMovieActivity
 import com.project.moviecatalogue.ui.tvshow.viewmodel.TvShowViewModel
-import com.project.moviecatalogue.utils.DataDummy
 
 class DetailTvShowActivity : AppCompatActivity() {
 
@@ -23,26 +21,24 @@ class DetailTvShowActivity : AppCompatActivity() {
         val activityDetailTvShowBinding = ActivityDetailTvShowBinding.inflate(layoutInflater)
         setContentView(activityDetailTvShowBinding.root)
 
-        //setSupportActionBar(ActivityDetailTvShowBinding.toolbar)
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         val extras = intent.extras
         if (extras != null) {
-            val detailId = extras.getInt(DetailMovieActivity.EXTRA_DATA)
+            val detailId = extras.getInt(EXTRA_DATA)
             val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[TvShowViewModel::class.java]
-            val data = viewModel.getData()
-            activityDetailTvShowBinding.tvTitle.text = data[detailId].name
-            activityDetailTvShowBinding.edtGenre.setText(data[detailId].genreIds)
-            activityDetailTvShowBinding.edtDurasi.setText(data[detailId].genreIds)
-            activityDetailTvShowBinding.edtRilis.setText(data[detailId].firstAirDate)
-            activityDetailTvShowBinding.edtUsia.setText(data[detailId].genreIds)
-            activityDetailTvShowBinding.tvRating.text = data[detailId].voteAverage.toString()
-            activityDetailTvShowBinding.tvPopularitas.text = data[detailId].popularity.toString()
-            activityDetailTvShowBinding.tvVote.text = data[detailId].voteCount.toString()
-            activityDetailTvShowBinding.tvDeskripsi.text = data[detailId].overview
+            val data = viewModel.getDetail(detailId)
+            activityDetailTvShowBinding.tvTitleTvShow.text = data.name
+            activityDetailTvShowBinding.edtGenre.setText(data.genreIds)
+            activityDetailTvShowBinding.edtDurasi.setText(data.durasi)
+            activityDetailTvShowBinding.edtRilis.setText(data.firstAirDate)
+            activityDetailTvShowBinding.edtJumlahEpisode.setText(data.jumlahEpisode)
+            activityDetailTvShowBinding.tvRating.text = data.voteAverage.toString()
+            activityDetailTvShowBinding.tvPopularitas.text = data.popularity.toString()
+            activityDetailTvShowBinding.tvVote.text = data.voteCount.toString()
+            activityDetailTvShowBinding.tvBahasa.text = data.originalLanguage
+            activityDetailTvShowBinding.tvDeskripsi.text = data.overview
 
             Glide.with(this)
-                .load(data[detailId].posterPath)
+                .load(data.posterPath)
                 .apply(
                     RequestOptions.placeholderOf(R.drawable.ic_loading)
                         .error(R.drawable.ic_error))

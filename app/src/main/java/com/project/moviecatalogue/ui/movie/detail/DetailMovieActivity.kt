@@ -8,7 +8,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.project.moviecatalogue.R
 import com.project.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.project.moviecatalogue.ui.movie.viewmodel.MovieViewModel
-import com.project.moviecatalogue.utils.DataDummy
 
 class DetailMovieActivity : AppCompatActivity() {
 
@@ -22,26 +21,24 @@ class DetailMovieActivity : AppCompatActivity() {
         val activityDetailMovieBinding = ActivityDetailMovieBinding.inflate(layoutInflater)
         setContentView(activityDetailMovieBinding.root)
 
-        //setSupportActionBar(activityDetailBinding.toolbar)
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         val extras = intent.extras
         if (extras != null) {
             val detailId = extras.getInt(EXTRA_DATA)
             val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MovieViewModel::class.java]
-            val data = viewModel.getData()
-            activityDetailMovieBinding.tvTitle.text = data[detailId].name
-            activityDetailMovieBinding.edtGenre.setText(data[detailId].genreIds)
-            activityDetailMovieBinding.edtDurasi.setText(data[detailId].genreIds)
-            activityDetailMovieBinding.edtRilis.setText(data[detailId].firstAirDate)
-            activityDetailMovieBinding.edtUsia.setText(data[detailId].genreIds)
-            activityDetailMovieBinding.tvRating.text = data[detailId].voteAverage.toString()
-            activityDetailMovieBinding.tvPopularitas.text = data[detailId].popularity.toString()
-            activityDetailMovieBinding.tvVote.text = data[detailId].voteCount.toString()
-            activityDetailMovieBinding.tvDeskripsi.text = data[detailId].overview
+            val data = viewModel.getDetail(detailId)
+            activityDetailMovieBinding.tvTitleMovie.text = data.name
+            activityDetailMovieBinding.edtGenre.setText(data.genreIds)
+            activityDetailMovieBinding.edtDurasi.setText(data.durasi)
+            activityDetailMovieBinding.edtRilis.setText(data.firstAirDate)
+            activityDetailMovieBinding.edtUsia.setText(data.usia)
+            activityDetailMovieBinding.tvRating.text = data.voteAverage.toString()
+            activityDetailMovieBinding.tvPopularitas.text = data.popularity.toString()
+            activityDetailMovieBinding.tvVote.text = data.voteCount.toString()
+            activityDetailMovieBinding.tvBahasa.text = data.originalLanguage
+            activityDetailMovieBinding.tvDeskripsi.text = data.overview
 
             Glide.with(this)
-                .load(data[detailId].posterPath)
+                .load(data.posterPath)
                 .apply(
                     RequestOptions.placeholderOf(R.drawable.ic_loading)
                         .error(R.drawable.ic_error))
