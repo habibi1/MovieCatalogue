@@ -26,23 +26,26 @@ class DetailTvShowActivity : AppCompatActivity() {
             val detailId = extras.getInt(EXTRA_DATA)
             val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[TvShowViewModel::class.java]
             val data = viewModel.getDetail(detailId)
-            activityDetailTvShowBinding.tvTitleTvShow.text = data.name
-            activityDetailTvShowBinding.edtGenre.setText(data.genreIds)
-            activityDetailTvShowBinding.edtDurasi.setText(data.durasi)
-            activityDetailTvShowBinding.edtRilis.setText(data.firstAirDate)
-            activityDetailTvShowBinding.edtJumlahEpisode.setText(data.jumlahEpisode)
-            activityDetailTvShowBinding.tvRating.text = data.voteAverage.toString()
-            activityDetailTvShowBinding.tvPopularitas.text = data.popularity.toString()
-            activityDetailTvShowBinding.tvVote.text = data.voteCount.toString()
-            activityDetailTvShowBinding.tvBahasa.text = data.originalLanguage
-            activityDetailTvShowBinding.tvDeskripsi.text = data.overview
 
-            Glide.with(this)
-                .load(data.posterPath)
-                .apply(
-                    RequestOptions.placeholderOf(R.drawable.ic_loading)
-                        .error(R.drawable.ic_error))
-                .into(activityDetailTvShowBinding.ivPoster)
+            activityDetailTvShowBinding.apply {
+                tvTitleTvShow.text = data.name
+                edtGenre.setText(data.genreIds)
+                edtDurasi.setText(data.durasi)
+                edtRilis.setText(data.firstAirDate)
+                edtJumlahEpisode.setText(data.jumlahEpisode)
+                tvRating.text = data.voteAverage.toString()
+                tvPopularitas.text = data.popularity.toString()
+                tvVote.text = data.voteCount.toString()
+                tvBahasa.text = data.originalLanguage
+                tvDeskripsi.text = data.overview
+
+                Glide.with(this@DetailTvShowActivity)
+                    .load(data.posterPath)
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error))
+                    .into(ivPoster)
+            }
         }
     }
 }

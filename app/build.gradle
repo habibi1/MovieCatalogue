@@ -48,9 +48,9 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
+    implementation "androidx.legacy:legacy-support-v4:$legacy"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation"
 
     //testing
     testImplementation "junit:junit:$junitVersion"
@@ -64,4 +64,8 @@ dependencies {
     //MVVM
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedata"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodel"
+    implementation "androidx.activity:activity-ktx:$activity"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3"
 }

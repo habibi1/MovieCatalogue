@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.project.moviecatalogue.R
-import com.project.moviecatalogue.data.MovieEntity
+import com.project.moviecatalogue.data.DetailMovie
 import com.project.moviecatalogue.databinding.ItemMovieBinding
 import com.project.moviecatalogue.ui.movie.detail.DetailMovieActivity
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
-    private var listMovies = ArrayList<MovieEntity>()
+    private var listMovies = ArrayList<DetailMovie>()
 
-    fun setMovies(movies: List<MovieEntity>?) {
+    fun setMovies(movies: List<DetailMovie>?) {
         if (movies == null) return
         this.listMovies.clear()
         this.listMovies.addAll(movies)
@@ -42,12 +42,12 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(movie: MovieEntity) {
+        fun bind(movie: DetailMovie) {
             with(binding) {
-                tvTitle.text = movie.name
-                tvGenre.text = movie.genreIds
+                tvTitle.text = movie.title
+                tvGenre.text = movie.genreIds.toString()
                 tvRating.text = movie.voteAverage.toString()
-                tvUsia.text = movie.durasi
+                tvUsia.text = movie.adult.toString()
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailMovieActivity::class.java)
                     intent.putExtra(DetailMovieActivity.EXTRA_DATA, movie.id)
