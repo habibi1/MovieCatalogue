@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.moviecatalogue.databinding.FragmentTvShowBinding
+import com.project.moviecatalogue.ui.movie.viewmodel.MovieViewModel
 import com.project.moviecatalogue.ui.tvshow.viewmodel.TvShowViewModel
+import com.project.moviecatalogue.viewmodel.ViewModelFactory
 
 class TvShowFragment : Fragment() {
 
@@ -25,26 +27,33 @@ class TvShowFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[TvShowViewModel::class.java]
-            val tvShows = viewModel.getData()
 
-            if (tvShows.isEmpty()) {
-                fragmentTvShowBinding.layoutDataKosong.visibility = View.VISIBLE
-                fragmentTvShowBinding.progressBar.visibility = View.INVISIBLE
-                fragmentTvShowBinding.rvTvShow.visibility = View.INVISIBLE
-            } else {
-                fragmentTvShowBinding.layoutDataKosong.visibility = View.INVISIBLE
-                fragmentTvShowBinding.progressBar.visibility = View.INVISIBLE
-                fragmentTvShowBinding.rvTvShow.visibility = View.VISIBLE
+            fragmentTvShowBinding.layoutDataKosong.visibility = View.GONE
+            fragmentTvShowBinding.progressBar.visibility = View.VISIBLE
+            fragmentTvShowBinding.rvTvShow.visibility = View.GONE
 
-                val tvShowAdapter = TvShowAdapter()
-                tvShowAdapter.setTvShows(tvShows)
-                with(fragmentTvShowBinding.rvTvShow) {
-                    layoutManager = LinearLayoutManager(context)
-                    setHasFixedSize(true)
-                    adapter = tvShowAdapter
+            val factory = ViewModelFactory.getInstance()
+            val tvShowViewModel = ViewModelProvider(this, factory)[TvShowViewModel::class.java]
+
+            tvShowViewModel.loadPopularTvShow().observe(viewLifecycleOwner, { listTvShow ->
+                if (listTvShow.isEmpty()) {
+                    fragmentTvShowBinding.layoutDataKosong.visibility = View.VISIBLE
+                    fragmentTvShowBinding.progressBar.visibility = View.GONE
+                    fragmentTvShowBinding.rvTvShow.visibility = View.GONE
+                } else {
+                    fragmentTvShowBinding.layoutDataKosong.visibility = View.GONE
+                    fragmentTvShowBinding.progressBar.visibility = View.GONE
+                    fragmentTvShowBinding.rvTvShow.visibility = View.VISIBLE
+
+                    val tvShowAdapter = TvShowAdapter()
+                    tvShowAdapter.setTvShows(listTvShow)
+                    with(fragmentTvShowBinding.rvTvShow) {
+                        layoutManager = LinearLayoutManager(context)
+                        setHasFixedSize(true)
+                        adapter = tvShowAdapter
+                    }
                 }
-            }
+            })
         }
     }
 }

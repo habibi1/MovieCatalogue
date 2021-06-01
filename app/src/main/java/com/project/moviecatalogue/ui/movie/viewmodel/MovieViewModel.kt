@@ -5,15 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.project.moviecatalogue.api.ApiConfig
-import com.project.moviecatalogue.data.DetailMovie
-import com.project.moviecatalogue.data.MovieEntity
-import com.project.moviecatalogue.data.PopularMovieResponse
-import com.project.moviecatalogue.utils.DataDummy
+import com.project.moviecatalogue.data.source.remote.response.DetailMovie
+import com.project.moviecatalogue.data.source.CatalogRepository
+import com.project.moviecatalogue.data.source.remote.response.DetailMovieResponse
+import com.project.moviecatalogue.data.source.remote.response.PopularMovieResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MovieViewModel: ViewModel() {
+class MovieViewModel(val catalogRepository: CatalogRepository): ViewModel() {
 
     private val _listMovie = MutableLiveData<List<DetailMovie>>()
     val listMovie: LiveData<List<DetailMovie>> = _listMovie
@@ -23,16 +23,16 @@ class MovieViewModel: ViewModel() {
 
     companion object{
         private const val TAG = "MovieViewModel"
-        //private const val RESTAURANT_ID = "uewq1zg2zlskfw1e867"
     }
 
     init {
-        loadPopularMovie()
+        //loadPopular()
+        //loadPopularMovie()
     }
 
-    fun loadPopularMovie() {
+    fun loadPopular() {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().getPopularMovie("9eda808b062dc5bb6e2123b231b8ba84")
+        val client = ApiConfig.getApiService().getPopularMovie()
         client.enqueue(object : Callback<PopularMovieResponse> {
             override fun onResponse(
                 call: Call<PopularMovieResponse>,
@@ -40,7 +40,7 @@ class MovieViewModel: ViewModel() {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _listMovie.value = response.body()?.results
+                    //_listMovie.value = response.body()?.results
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
@@ -51,4 +51,8 @@ class MovieViewModel: ViewModel() {
             }
         })
     }
+
+    fun loadPopularMovie(): LiveData<List<DetailMovie>> = catalogRepository.getPapularMovies()
+
+    fun loadDetailMovie(id: Int): LiveData<DetailMovieResponse> = catalogRepository.getDetailMovie(id)
 }

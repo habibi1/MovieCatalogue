@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,245 +7,259 @@
     tools:context=".ui.movie.detail.DetailMovieActivity"
     android:padding="@dimen/pading_normal">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="@dimen/width_poster"
-            android:layout_height="@dimen/height_poster"
-            app:cardCornerRadius="@dimen/card_radius">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_poster"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/img_poster_movie_1" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_medium">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_title_movie"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/padding_medium"
-                android:text="@string/judul"
-                android:textColor="@color/black"
-                android:textSize="@dimen/size_title"
-                android:textStyle="bold" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField_genre"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_banner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/genre"
-                style="@style/Widget.Design.TextInputLayout">
+                app:cardCornerRadius="@dimen/card_radius"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" >
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_genre"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_banner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
+                    android:layout_height="200dp"
+                    android:src="@drawable/ic_loading"
+                    android:scaleType="centerCrop"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField_durasi"
+            <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/durasi"
-                style="@style/Widget.Design.TextInputLayout">
+                android:layout_marginTop="@dimen/pading_normal"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_banner">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_durasi"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/width_poster"
+                    android:layout_height="@dimen/height_poster"
+                    app:cardCornerRadius="@dimen/card_radius">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iv_poster"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_loading" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:id="@+id/tv_title_movie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/padding_medium"
+                        android:text="@string/judul"
+                        android:textSize="@dimen/size_title"
+                        android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField_rilis"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textField_durasi"
+                        style="@style/Widget.Design.TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/durasi">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_durasi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textField_rilis"
+                        style="@style/Widget.Design.TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/rilis">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_rilis"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textField_usia"
+                        style="@style/Widget.Design.TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/usia">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_usia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/rilis"
-                style="@style/Widget.Design.TextInputLayout">
+                android:layout_marginTop="@dimen/pading_normal"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_rilis"
-                    android:layout_width="match_parent"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/zero_dp"
                     android:layout_height="wrap_content"
-                    android:enabled="false" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/padding_small">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField_usia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/usia"
-                style="@style/Widget.Design.TextInputLayout">
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rating" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_usia"
-                    android:layout_width="match_parent"
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/loading" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/zero_dp"
                     android:layout_height="wrap_content"
-                    android:enabled="false" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/padding_small">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/popularitas" />
 
-    </LinearLayout>
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_popularitas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/loading" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/pading_normal"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="@dimen/zero_dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/padding_small">
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/zero_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/padding_small">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/vote" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_vote"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/loading" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/pading_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/rating" />
+                    android:text="@string/bahasa"
+                    android:layout_marginBottom="@dimen/padding_medium"
+                    android:textSize="@dimen/size_sub_title"
+                    android:textStyle="bold"/>
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_rating"
+                    android:id="@+id/tv_bahasa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/rating" />
+                    android:text="@string/loading"
+                    android:layout_marginBottom="@dimen/pading_normal"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/deskripsi"
+                    android:layout_marginBottom="@dimen/padding_medium"
+                    android:textSize="@dimen/size_sub_title"
+                    android:textStyle="bold"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_deskripsi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="@dimen/zero_dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/padding_small">
+    </androidx.core.widget.NestedScrollView>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/popularitas" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_popularitas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/popularitas" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="@dimen/zero_dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/padding_small">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/vote" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_vote"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/vote" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/pading_normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bahasa"
-            android:layout_marginBottom="@dimen/padding_medium"
-            android:textColor="@color/black"
-            android:textSize="@dimen/size_sub_title"
-            android:textStyle="bold"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_bahasa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bahasa"
-            android:layout_marginBottom="@dimen/pading_normal"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/deskripsi"
-            android:layout_marginBottom="@dimen/padding_medium"
-            android:textColor="@color/black"
-            android:textSize="@dimen/size_sub_title"
-            android:textStyle="bold"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_deskripsi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/deskripsi"/>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

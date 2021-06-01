@@ -1,7 +1,10 @@
-package com.project.moviecatalogue.data
+package com.project.moviecatalogue.data.source.remote.response
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import com.google.gson.annotations.SerializedName
 
+@Parcelize
 data class PopularMovieResponse(
 
 	@field:SerializedName("page")
@@ -15,8 +18,9 @@ data class PopularMovieResponse(
 
 	@field:SerializedName("total_results")
 	val totalResults: Int
-)
+) : Parcelable
 
+@Parcelize
 data class DetailMovie(
 
 	@field:SerializedName("overview")
@@ -60,4 +64,4 @@ data class DetailMovie(
 
 	@field:SerializedName("vote_count")
 	val voteCount: Int
-)
+) : Parcelable

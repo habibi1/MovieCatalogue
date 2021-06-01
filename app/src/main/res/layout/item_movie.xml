@@ -4,18 +4,28 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/card_radius"
+    android:layout_marginTop="@dimen/padding_small"
+    app:layout_goneMarginBottom="@dimen/padding_small"
     android:layout_marginBottom="@dimen/padding_small">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_medium">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_poster"
-            android:layout_width="@dimen/width_poster_list"
-            android:layout_height="@dimen/height_poster_list"
-            android:src="@drawable/img_poster_movie_1"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/card_radius">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_poster"
+                android:layout_width="@dimen/width_poster_list"
+                android:layout_height="@dimen/height_poster_list"
+                android:src="@drawable/img_poster_movie_1"/>
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -28,28 +38,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/judul"
-                android:textColor="@color/black"
+                android:textAppearance="?attr/textAppearanceListItem"
                 android:textSize="@dimen/size_title"
-                android:textStyle="bold"
-                android:textAppearance="?attr/textAppearanceListItem"/>
+                android:textStyle="bold" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_genre"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/genre"/>
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/padding_small"
+                android:paddingBottom="@dimen/padding_small">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rating"
+                    android:textColor="@color/secondary_primary"/>
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_marginStart="@dimen/padding_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.AppCompat.RatingBar.Small"/>
+
+            </LinearLayout>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_rating"
+                android:id="@+id/tv_pemilih"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/rating"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_usia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/usia"/>
+                android:text="@string/pemilih" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

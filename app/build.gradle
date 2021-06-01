@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -16,6 +17,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+
+        // API The Movie DB
+        buildConfigField("String", "TMDB_API_KEY", '"9eda808b062dc5bb6e2123b231b8ba84"')
+        buildConfigField("String", "BASE_URL_TMDB", '"https://api.themoviedb.org/3/"')
+        buildConfigField("String", "BASE_URL_IMAGE", '"https://image.tmdb.org/t/p/w500/"')
     }
 
     buildTypes {

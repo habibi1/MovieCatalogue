@@ -1,5 +1,6 @@
 package com.project.moviecatalogue.api
 
+import com.project.moviecatalogue.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,7 +15,7 @@ class ApiConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/3/")
+                .baseUrl(BuildConfig.BASE_URL_TMDB)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

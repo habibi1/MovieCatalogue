@@ -1,21 +1,24 @@
 package com.project.moviecatalogue.ui.tvshow.list
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.project.moviecatalogue.BuildConfig
 import com.project.moviecatalogue.R
-import com.project.moviecatalogue.data.TvShowEntity
+import com.project.moviecatalogue.data.source.remote.response.DetailTvShow
 import com.project.moviecatalogue.databinding.ItemMovieBinding
 import com.project.moviecatalogue.ui.tvshow.detail.DetailTvShowActivity
 
+
 class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
 
-    private var listTvShows = ArrayList<TvShowEntity>()
+    private var listTvShows = ArrayList<DetailTvShow>()
 
-    fun setTvShows(tvShows: List<TvShowEntity>?) {
+    fun setTvShows(tvShows: List<DetailTvShow>?) {
         if (tvShows == null) return
         this.listTvShows.clear()
         this.listTvShows.addAll(tvShows)
@@ -41,20 +44,22 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(tvShows: TvShowEntity) {
+        @SuppressLint("SetTextI18n")
+        fun bind(tvShows: DetailTvShow) {
             with(binding) {
                 tvTitle.text = tvShows.name
-                tvGenre.text = tvShows.genreIds
+                ratingBar.rating = tvShows.voteAverage.toFloat()/2
                 tvRating.text = tvShows.voteAverage.toString()
-                tvUsia.text = tvShows.durasi
+                tvPemilih.text = tvShows.voteCount.toString() + " Pemilih"
 
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
                     intent.putExtra(DetailTvShowActivity.EXTRA_DATA, tvShows.id)
                     itemView.context.startActivity(intent)
                 }
+
                 Glide.with(itemView.context)
-                    .load(tvShows.posterPath)
+                    .load(BuildConfig.BASE_URL_IMAGE + tvShows.posterPath)
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
                         .error(R.drawable.ic_error))

@@ -1,20 +1,24 @@
 package com.project.moviecatalogue.ui.movie.list
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.moviecatalogue.databinding.FragmentMovieBinding
 import com.project.moviecatalogue.ui.movie.viewmodel.MovieViewModel
+import com.project.moviecatalogue.viewmodel.ViewModelFactory
 
 class MovieFragment : Fragment() {
 
-    private val movieViewModel : MovieViewModel by viewModels()
-
     private lateinit var fragmentMovieBinding: FragmentMovieBinding
+
+    companion object{
+        private const val TAG = "MovieFragment"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,23 +32,39 @@ class MovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
 
-            movieViewModel.listMovie.observe(viewLifecycleOwner, { listMovie ->
+            fragmentMovieBinding.progressBar.visibility = View.VISIBLE
+            fragmentMovieBinding.layoutDataKosong.visibility = View.GONE
+            fragmentMovieBinding.rvMovie.visibility = View.GONE
 
-                if (listMovie.isEmpty()) {
-                    fragmentMovieBinding.layoutDataKosong.visibility = View.VISIBLE
-                    fragmentMovieBinding.progressBar.visibility = View.INVISIBLE
-                    fragmentMovieBinding.rvMovie.visibility = View.INVISIBLE
+            val factory = ViewModelFactory.getInstance()
+            val movieViewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
+
+            movieViewModel.loadPopularMovie().observe(viewLifecycleOwner, { listMovie ->
+
+                if (listMovie == null) {
+                    Log.i(TAG, "onChange: null")
+                    fragmentMovieBinding.progressBar.visibility = View.VISIBLE
+                    fragmentMovieBinding.layoutDataKosong.visibility = View.GONE
+                    fragmentMovieBinding.rvMovie.visibility = View.GONE
                 } else {
-                    fragmentMovieBinding.layoutDataKosong.visibility = View.INVISIBLE
-                    fragmentMovieBinding.progressBar.visibility = View.INVISIBLE
-                    fragmentMovieBinding.rvMovie.visibility = View.VISIBLE
+                    if (listMovie.isEmpty()) {
+                        Log.i(TAG, "onChange: empty")
+                        fragmentMovieBinding.layoutDataKosong.visibility = View.VISIBLE
+                        fragmentMovieBinding.progressBar.visibility = View.GONE
+                        fragmentMovieBinding.rvMovie.visibility = View.GONE
+                    } else {
+                        Log.i(TAG, "onChange: not empty")
+                        fragmentMovieBinding.layoutDataKosong.visibility = View.GONE
+                        fragmentMovieBinding.progressBar.visibility = View.GONE
+                        fragmentMovieBinding.rvMovie.visibility = View.VISIBLE
 
-                    val movieAdapter = MovieAdapter()
-                    movieAdapter.setMovies(listMovie)
-                    with(fragmentMovieBinding.rvMovie) {
-                        layoutManager = LinearLayoutManager(context)
-                        setHasFixedSize(true)
-                        adapter = movieAdapter
+                        val movieAdapter = MovieAdapter()
+                        movieAdapter.setMovies(listMovie)
+                        with(fragmentMovieBinding.rvMovie) {
+                            layoutManager = LinearLayoutManager(context)
+                            setHasFixedSize(true)
+                            adapter = movieAdapter
+                        }
                     }
                 }
 
