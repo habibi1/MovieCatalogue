@@ -1,56 +1,55 @@
 package com.project.moviecatalogue.ui.movie.viewmodel
 
-import com.project.moviecatalogue.R
-import com.project.moviecatalogue.data.MovieEntity
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.project.moviecatalogue.data.source.CatalogRepository
+import com.project.moviecatalogue.data.source.local.entity.ListMovieEntity
+import com.project.moviecatalogue.utils.DataDummy
 import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Rule
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito
+import org.mockito.Mockito.`when`
+import org.mockito.junit.MockitoJUnitRunner
 
+@RunWith(MockitoJUnitRunner::class)
 class MovieViewModelTest {
 
     private lateinit var viewModel: MovieViewModel
-    private lateinit var movieEntity: MovieEntity
+    private var dataDummyListMovie = DataDummy.generateDummyListMovie()
+
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @Mock
+    private lateinit var catalogRepository: CatalogRepository
+
+    @Mock
+    private lateinit var observer: Observer<List<ListMovieEntity>>
 
     @Before
     fun setUp() {
-        viewModel = MovieViewModel()
-        movieEntity = MovieEntity(
-            0,
-            "Action",
-            "en",
-            "An elite Navy SEAL uncovers an international conspiracy while seeking justice for the murder of his pregnant wife.",
-            "2021-04-29",
-            R.drawable.img_poster_movie_1,
-            4547.446,
-            "Tom Clancy's Without Remorse",
-            7.3,
-            829,
-            "Remaja",
-            "1 Jam 49 Menit"
-        )
+        viewModel = MovieViewModel(catalogRepository)
     }
 
     @Test
-    fun getData() {
-        val moviesEntities = viewModel.getData()
-        assertNotNull(moviesEntities)
-        assertEquals(10, moviesEntities.size)
-    }
+    fun loadPopularMovie() {
+        val movie = MutableLiveData<List<ListMovieEntity>>()
+        movie.value = dataDummyListMovie
 
-    @Test
-    fun getDetail() {
-        val movie = viewModel.getDetail(0)
-        assertNotNull(movie)
-        assertEquals(movie.name, movieEntity.name)
-        assertEquals(movie.genreIds, movieEntity.genreIds)
-        assertEquals(movie.originalLanguage, movieEntity.originalLanguage)
-        assertEquals(movie.overview, movieEntity.overview)
-        assertEquals(movie.firstAirDate, movieEntity.firstAirDate)
-        assertEquals(movie.posterPath, movieEntity.posterPath)
-        assertEquals(movie.popularity.toString(), movieEntity.popularity.toString())
-        assertEquals(movie.voteAverage.toString(), movieEntity.voteAverage.toString())
-        assertEquals(movie.voteCount, movieEntity.voteCount)
-        assertEquals(movie.usia, movieEntity.usia)
-        assertEquals(movie.durasi, movieEntity.durasi)
+        `when`(catalogRepository.getPapularMovies()).thenReturn(movie)
+
+        val dataListMovie = viewModel.loadPopularMovie().value
+
+        Mockito.verify(catalogRepository).getPapularMovies()
+        assertNotNull(dataListMovie)
+        assertEquals(dataDummyListMovie.size, dataListMovie?.size)
+
+        viewModel.loadPopularMovie().observeForever(observer)
+        Mockito.verify(observer).onChanged(dataDummyListMovie)
     }
 }

@@ -71,10 +71,6 @@ class MovieFragment : Fragment() {
                 val movieAdapter = MovieAdapter()
                 movieAdapter.setMovies(listMovie)
             })
-
-            movieViewModel.isLoading.observe(viewLifecycleOwner, {
-                fragmentMovieBinding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
-            })
         }
     }
 }

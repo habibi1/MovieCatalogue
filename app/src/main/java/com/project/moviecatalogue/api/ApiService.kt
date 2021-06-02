@@ -10,7 +10,7 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("movie/popular")
+    @GET("movie/now_playing")
     fun getPopularMovie(
         @Query("api_key") apiKey: String = BuildConfig.TMDB_API_KEY
     ): Call<PopularMovieResponse>
@@ -21,7 +21,7 @@ interface ApiService {
         @Query("api_key") apiKey: String = BuildConfig.TMDB_API_KEY
     ): Call<DetailMovieResponse>
 
-    @GET("tv/popular")
+    @GET("tv/on_the_air")
     fun getPopularTvShow(
         @Query("api_key") apiKey: String = BuildConfig.TMDB_API_KEY
     ): Call<PopularTvShowResponse>

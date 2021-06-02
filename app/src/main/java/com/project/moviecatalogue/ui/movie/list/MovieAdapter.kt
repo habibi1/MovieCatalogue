@@ -9,15 +9,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.project.moviecatalogue.BuildConfig
 import com.project.moviecatalogue.R
-import com.project.moviecatalogue.data.source.remote.response.DetailMovie
+import com.project.moviecatalogue.data.source.local.entity.ListMovieEntity
 import com.project.moviecatalogue.databinding.ItemMovieBinding
 import com.project.moviecatalogue.ui.movie.detail.DetailMovieActivity
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
-    private var listMovies = ArrayList<DetailMovie>()
+    private var listMovies = ArrayList<ListMovieEntity>()
 
-    fun setMovies(movies: List<DetailMovie>?) {
+    fun setMovies(movies: List<ListMovieEntity>?) {
         if (movies == null) return
         this.listMovies.clear()
         this.listMovies.addAll(movies)
@@ -45,7 +45,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(movie: DetailMovie) {
+        fun bind(movie: ListMovieEntity) {
             with(binding) {
                 tvTitle.text = movie.title
                 ratingBar.rating = movie.voteAverage.toFloat()/2

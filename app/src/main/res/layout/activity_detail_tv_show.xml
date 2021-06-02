@@ -27,7 +27,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_banner"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="@dimen/height_banner"
                     android:src="@drawable/ic_loading"
                     android:scaleType="centerCrop"/>
 
@@ -73,14 +73,14 @@
                         android:textStyle="bold" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textField_durasi"
+                        android:id="@+id/textField_status"
                         style="@style/Widget.Design.TextInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/durasi">
+                        android:hint="@string/status">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edt_durasi"
+                            android:id="@+id/edt_status"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false" />
@@ -137,13 +137,14 @@
                     android:layout_width="@dimen/zero_dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="@dimen/padding_small">
+                    android:layout_margin="@dimen/padding_medium">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:padding="@dimen/padding_medium"
                         android:orientation="vertical">
 
                         <com.google.android.material.textview.MaterialTextView
@@ -165,13 +166,14 @@
                     android:layout_width="@dimen/zero_dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="@dimen/padding_small">
+                    android:layout_margin="@dimen/padding_medium">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:padding="@dimen/padding_medium"
                         android:orientation="vertical">
 
                         <com.google.android.material.textview.MaterialTextView
@@ -193,13 +195,14 @@
                     android:layout_width="@dimen/zero_dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="@dimen/padding_small">
+                    android:layout_margin="@dimen/padding_medium">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:padding="@dimen/padding_medium"
                         android:orientation="vertical">
 
                         <com.google.android.material.textview.MaterialTextView

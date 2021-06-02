@@ -39,9 +39,9 @@ class DetailMovieActivity : AppCompatActivity() {
 
                 activityDetailMovieBinding.apply {
                     tvTitleMovie.text = data.title
-                    edtDurasi.setText(data.runtime.toString())
+                    edtDurasi.setText(data.runtime.toString() + " Menit")
                     edtRilis.setText(data.releaseDate)
-                    edtUsia.setText(data.adult.toString())
+                    edtStatus.setText(data.status)
                     tvRating.text = data.voteAverage.toString()
                     tvPopularitas.text = data.popularity.toString()
                     tvVote.text = data.voteCount.toString()

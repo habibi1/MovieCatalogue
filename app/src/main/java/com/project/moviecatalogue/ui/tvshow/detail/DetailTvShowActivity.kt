@@ -38,7 +38,7 @@ class DetailTvShowActivity : AppCompatActivity() {
 
                 activityDetailTvShowBinding.apply {
                     tvTitleTvShow.text = data.name
-                    edtDurasi.setText(data.episodeRunTime.toString())
+                    edtStatus.setText(data.status)
                     edtRilis.setText(data.firstAirDate)
                     edtJumlahEpisode.setText(data.numberOfEpisodes.toString())
                     tvRating.text = data.voteAverage.toString()

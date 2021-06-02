@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.project.moviecatalogue.BuildConfig
 import com.project.moviecatalogue.R
+import com.project.moviecatalogue.data.source.local.entity.ListTvShowEntity
 import com.project.moviecatalogue.data.source.remote.response.DetailTvShow
 import com.project.moviecatalogue.databinding.ItemMovieBinding
 import com.project.moviecatalogue.ui.tvshow.detail.DetailTvShowActivity
@@ -16,9 +17,9 @@ import com.project.moviecatalogue.ui.tvshow.detail.DetailTvShowActivity
 
 class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
 
-    private var listTvShows = ArrayList<DetailTvShow>()
+    private var listTvShows = ArrayList<ListTvShowEntity>()
 
-    fun setTvShows(tvShows: List<DetailTvShow>?) {
+    fun setTvShows(tvShows: List<ListTvShowEntity>?) {
         if (tvShows == null) return
         this.listTvShows.clear()
         this.listTvShows.addAll(tvShows)
@@ -45,7 +46,7 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(tvShows: DetailTvShow) {
+        fun bind(tvShows: ListTvShowEntity) {
             with(binding) {
                 tvTitle.text = tvShows.name
                 ratingBar.rating = tvShows.voteAverage.toFloat()/2
