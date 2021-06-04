@@ -32,7 +32,6 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
                 false
             )
         )
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -65,5 +64,4 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
             }
         }
     }
-
 }

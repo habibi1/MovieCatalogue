@@ -10,7 +10,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.project.moviecatalogue.BuildConfig
 import com.project.moviecatalogue.R
 import com.project.moviecatalogue.data.source.local.entity.ListTvShowEntity
-import com.project.moviecatalogue.data.source.remote.response.DetailTvShow
 import com.project.moviecatalogue.databinding.ItemMovieBinding
 import com.project.moviecatalogue.ui.tvshow.detail.DetailTvShowActivity
 

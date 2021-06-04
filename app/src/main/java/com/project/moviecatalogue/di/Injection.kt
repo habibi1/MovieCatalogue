@@ -1,6 +1,5 @@
 package com.project.moviecatalogue.di
 
-import android.content.Context
 import com.project.moviecatalogue.data.source.CatalogRepository
 import com.project.moviecatalogue.data.source.remote.repository.RemoteDataSource
 

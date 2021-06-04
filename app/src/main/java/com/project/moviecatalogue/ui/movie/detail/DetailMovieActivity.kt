@@ -9,7 +9,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.project.moviecatalogue.BuildConfig
 import com.project.moviecatalogue.R
 import com.project.moviecatalogue.databinding.ActivityDetailMovieBinding
-import com.project.moviecatalogue.ui.movie.list.MovieFragment
 import com.project.moviecatalogue.ui.movie.viewmodel.MovieViewModel
 import com.project.moviecatalogue.viewmodel.ViewModelFactory
 

@@ -1,6 +1,5 @@
 package com.project.moviecatalogue.ui.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.project.moviecatalogue.data.source.CatalogDataSource

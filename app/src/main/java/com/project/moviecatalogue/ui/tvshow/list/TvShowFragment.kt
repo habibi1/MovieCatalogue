@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.moviecatalogue.databinding.FragmentTvShowBinding
-import com.project.moviecatalogue.ui.movie.viewmodel.MovieViewModel
 import com.project.moviecatalogue.ui.tvshow.viewmodel.TvShowViewModel
 import com.project.moviecatalogue.viewmodel.ViewModelFactory
 

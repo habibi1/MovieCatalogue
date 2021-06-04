@@ -8,8 +8,7 @@ import com.nhaarman.mockitokotlin2.verify
 import com.project.moviecatalogue.data.source.remote.repository.RemoteDataSource
 import com.project.moviecatalogue.ui.utils.LiveDataTestUtil
 import com.project.moviecatalogue.utils.DataDummy
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertNotNull
+import org.junit.Assert.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.Test
@@ -21,7 +20,7 @@ class CatalogRepositoryTest {
     private val catalogRepository = FakeCatalogRepository(remote)
 
     private val listMovieResponse = DataDummy.generateDummyListMovie()
-    private val movieId = listMovieResponse[0].id
+    private val movieId = listMovieResponse[1].id
     private val listTvShowResponse = DataDummy.generateDummyListTvShow()
     private val tvShowId = listTvShowResponse[0].id
     private val detailMovieResponse = DataDummy.generateDummyDetailMovie()

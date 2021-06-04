@@ -8,19 +8,16 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.project.moviecatalogue.R
 import com.project.moviecatalogue.ui.home.HomeActivity
 import com.project.moviecatalogue.utils.DataDummy
 import com.project.moviecatalogue.utils.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 
 class MovieFragmentTest {
     private val dummyMovie = DataDummy.generateDummyListMovie()
-    private val dummyDetailMovie = DataDummy.generateDummyDetailMovie()
 
     @Before
     fun setUp() {
@@ -37,31 +34,23 @@ class MovieFragmentTest {
     fun loadMovie() {
         onView(withId(R.id.navigation_movie)).check(matches(isDisplayed()))
         onView(withId(R.id.navigation_movie)).perform(click())
-        if (dummyMovie.isEmpty()) {
-            onView(withId(R.id.layout_data_kosong)).check(matches(isDisplayed()))
-        } else {
-            onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
-            onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie.size))
-        }
+        onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie.size))
     }
 
     @Test
     fun loadDetailMovie() {
         onView(withId(R.id.navigation_movie)).check(matches(isDisplayed()))
         onView(withId(R.id.navigation_movie)).perform(click())
-        if (dummyMovie.isEmpty()) {
-            onView(withId(R.id.layout_data_kosong)).check(matches(isDisplayed()))
-        } else {
-            onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(1, click()))
-            onView(withId(R.id.tv_title_movie)).check(matches(withText(dummyDetailMovie.title)))
-            onView(withId(R.id.edt_status)).check(matches(withText(dummyDetailMovie.status)))
-            onView(withId(R.id.edt_durasi)).check(matches(withText(dummyDetailMovie.runtime)))
-            onView(withId(R.id.edt_rilis)).check(matches(withText(dummyDetailMovie.releaseDate)))
-            onView(withId(R.id.tv_rating)).check(matches(withText(dummyDetailMovie.voteAverage.toString())))
-            onView(withId(R.id.tv_popularitas)).check(matches(withText(dummyDetailMovie.popularity.toString())))
-            onView(withId(R.id.tv_vote)).check(matches(withText(dummyDetailMovie.voteCount.toString())))
-            onView(withId(R.id.tv_bahasa)).check(matches(withText(dummyDetailMovie.originalLanguage)))
-            onView(withId(R.id.tv_deskripsi)).check(matches(withText(dummyDetailMovie.overview)))
-        }
+        onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(1, click()))
+        onView(withId(R.id.tv_title_movie)).check(matches(isDisplayed()))
+        onView(withId(R.id.edt_status)).check(matches(isDisplayed()))
+        onView(withId(R.id.edt_durasi)).check(matches(isDisplayed()))
+        onView(withId(R.id.edt_rilis)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_popularitas)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_vote)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_bahasa)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_deskripsi)).check(matches(isDisplayed()))
     }
 }
