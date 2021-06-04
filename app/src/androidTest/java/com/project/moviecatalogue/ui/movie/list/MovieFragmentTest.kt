@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -43,6 +43,8 @@ class MovieFragmentTest {
         onView(withId(R.id.navigation_movie)).check(matches(isDisplayed()))
         onView(withId(R.id.navigation_movie)).perform(click())
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(1, click()))
+        onView(withId(R.id.iv_poster)).check(matches(isDisplayed()))
+        onView(withId(R.id.iv_banner)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_title_movie)).check(matches(isDisplayed()))
         onView(withId(R.id.edt_status)).check(matches(isDisplayed()))
         onView(withId(R.id.edt_durasi)).check(matches(isDisplayed()))
@@ -51,6 +53,7 @@ class MovieFragmentTest {
         onView(withId(R.id.tv_popularitas)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_vote)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_bahasa)).check(matches(isDisplayed()))
+        onView(withId(R.id.scroll_view)).perform(swipeUp())
         onView(withId(R.id.tv_deskripsi)).check(matches(isDisplayed()))
     }
 }
