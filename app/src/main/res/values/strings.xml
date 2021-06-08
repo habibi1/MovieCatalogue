@@ -17,4 +17,8 @@
     <string name="loading">Memuat</string>
     <string name="pemilih">Pemilih</string>
     <string name="status">Status</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="favorit">Favorite</string>
+    <string name="menit"> Menit</string>
 </resources>

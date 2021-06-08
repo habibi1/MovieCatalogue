@@ -14,4 +14,5 @@
     <color name="dark_secondary_primary_light">#D69640</color>
     <color name="dark_secondary_primary_dark">#6E3D00</color>
     <color name="placeholder">#6FB6B6B6</color>
+    <color name="red">#FF0000</color>
 </resources>

@@ -17,4 +17,10 @@
         android:label="@string/tv_show"
         tools:layout="@layout/fragment_tv_show" />
 
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="com.project.moviecatalogue.ui.favorite.FavoriteFragment"
+        android:label="@string/favorit"
+        tools:layout="@layout/fragment_favorite"/>
+
 </navigation>

@@ -63,5 +63,21 @@ class DetailTvShowActivity : AppCompatActivity() {
                 }
             }
         })
+
+        activityDetailTvShowBinding.apply {
+            topAppBar.setNavigationOnClickListener{
+                finish()
+            }
+
+            topAppBar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.favorite -> {
+                        menuItem.setIcon(R.drawable.ic_save)
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.project.moviecatalogue.ui.movie.detail
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ class DetailMovieActivity : AppCompatActivity() {
         const val EXTRA_DATA = "extra_data"
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,7 +40,7 @@ class DetailMovieActivity : AppCompatActivity() {
 
                 activityDetailMovieBinding.apply {
                     tvTitleMovie.text = data.title
-                    edtDurasi.setText(data.runtime.toString() + " Menit")
+                    edtDurasi.setText(data.runtime.toString() + R.string.menit)
                     edtRilis.setText(data.releaseDate)
                     edtStatus.setText(data.status)
                     tvRating.text = data.voteAverage.toString()
@@ -63,5 +65,21 @@ class DetailMovieActivity : AppCompatActivity() {
                 }
             }
         })
+
+        activityDetailMovieBinding.apply {
+            topAppBar.setNavigationOnClickListener{
+                finish()
+            }
+
+            topAppBar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.favorite -> {
+                        menuItem.setIcon(R.drawable.ic_save)
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }
     }
 }
