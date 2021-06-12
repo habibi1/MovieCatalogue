@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.project.moviecatalogue.R
 import com.project.moviecatalogue.ui.favorite.movie.FavoriteMovieFragment
 import com.project.moviecatalogue.ui.favorite.tvshow.FavoriteTvShowFragment
 
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
-    FragmentPagerAdapter(fm) {
+    FragmentStatePagerAdapter(fm) {
 
     companion object {
         @StringRes

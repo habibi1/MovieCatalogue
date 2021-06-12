@@ -17,11 +17,14 @@ import com.project.moviecatalogue.ui.tvshow.detail.DetailTvShowActivity
 class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
 
     private var listTvShows = ArrayList<ListTvShowEntity>()
+    private var allListMovies = ArrayList<ListTvShowEntity>()
 
     fun setTvShows(tvShows: List<ListTvShowEntity>?) {
         if (tvShows == null) return
         this.listTvShows.clear()
         this.listTvShows.addAll(tvShows)
+        this.allListMovies.clear()
+        this.allListMovies.addAll(tvShows)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -50,7 +53,8 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
                 tvTitle.text = tvShows.name
                 ratingBar.rating = tvShows.voteAverage.toFloat()/2
                 tvRating.text = tvShows.voteAverage.toString()
-                tvPemilih.text = tvShows.voteCount.toString() + " Pemilih"
+                tvPemilih.text =
+                    tvShows.voteCount.toString() + binding.root.resources.getString(R.string.pemilih)
 
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
@@ -62,9 +66,20 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
                     .load(BuildConfig.BASE_URL_IMAGE + tvShows.posterPath)
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
-                        .error(R.drawable.ic_error))
+                            .error(R.drawable.ic_error)
+                    )
                     .into(ivPoster)
             }
         }
+    }
+
+    fun sortData(status: Boolean) {
+        if (status) {
+            listTvShows.sortWith(compareBy { it.name })
+        } else {
+            listTvShows.clear()
+            listTvShows.addAll(allListMovies)
+        }
+        notifyDataSetChanged()
     }
 }

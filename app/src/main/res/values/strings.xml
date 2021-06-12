@@ -15,10 +15,14 @@
     <string name="detail">Detail</string>
     <string name="title_activity_home">MainActivity</string>
     <string name="loading">Memuat</string>
-    <string name="pemilih">Pemilih</string>
+    <string name="pemilih">&#160;Pemilih</string>
     <string name="status">Status</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="favorit">Favorite</string>
-    <string name="menit"> Menit</string>
+    <string name="menit">&#160;Menit</string>
+    <string name="content_description_banner">Foto banner</string>
+    <string name="data_dihapus">Data dihapus!</string>
+    <string name="data_disimpan">Data disimpan!</string>
+    <string name="sort">Urutkan</string>
+    <string name="sorted">Data diurutkan!</string>
+    <string name="not_sorted">Data tidak diurutkan!</string>
 </resources>

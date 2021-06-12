@@ -3,13 +3,14 @@ package com.project.moviecatalogue.ui.movie.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.project.moviecatalogue.data.source.CatalogRepository
+import com.project.moviecatalogue.data.CatalogueRepository
 import com.project.moviecatalogue.data.source.local.entity.ListMovieEntity
 import com.project.moviecatalogue.utils.DataDummy
-import org.junit.Test
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
@@ -26,7 +27,7 @@ class MovieViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var catalogRepository: CatalogRepository
+    private lateinit var catalogRepository: CatalogueRepository
 
     @Mock
     private lateinit var observer: Observer<List<ListMovieEntity>>

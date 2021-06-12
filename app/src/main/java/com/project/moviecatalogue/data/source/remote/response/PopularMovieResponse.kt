@@ -1,8 +1,8 @@
 package com.project.moviecatalogue.data.source.remote.response
 
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PopularMovieResponse(

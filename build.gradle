@@ -8,9 +8,6 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
@@ -36,7 +33,7 @@ ext {
     androidTestVersion = '1.3.0'
 
     materialVersion = '1.3.0'
-    recyclerViewVersion = '1.2.0'
+    recyclerViewVersion = '1.2.1'
     glideVersion = '4.12.0'
     legacy = '1.0.0'
     navigation = '2.3.5'
@@ -51,4 +48,7 @@ ext {
     mockitoKotlinVersion = '2.2.0'
     androidTestVersion = '1.3.0'
     androidCoreTestVersion = '2.1.0'
+
+    room = '2.3.0'
+    pagingVersion = '2.1.1'
 }

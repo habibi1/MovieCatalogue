@@ -1,4 +1,4 @@
-package com.project.moviecatalogue.data.source.remote.repository
+package com.project.moviecatalogue.data.source.remote
 
 import android.util.Log
 import com.project.moviecatalogue.api.ApiConfig
@@ -6,7 +6,10 @@ import com.project.moviecatalogue.data.source.local.entity.DetailMovieEntity
 import com.project.moviecatalogue.data.source.local.entity.DetailTvShowEntity
 import com.project.moviecatalogue.data.source.local.entity.ListMovieEntity
 import com.project.moviecatalogue.data.source.local.entity.ListTvShowEntity
-import com.project.moviecatalogue.data.source.remote.response.*
+import com.project.moviecatalogue.data.source.remote.response.DetailMovieResponse
+import com.project.moviecatalogue.data.source.remote.response.DetailTvShowResponse
+import com.project.moviecatalogue.data.source.remote.response.PopularMovieResponse
+import com.project.moviecatalogue.data.source.remote.response.PopularTvShowResponse
 import com.project.moviecatalogue.utils.EspressoIdlingResource
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,13 +45,14 @@ class RemoteDataSource {
 
                 if (response.isSuccessful) {
                     val movieList = ArrayList<ListMovieEntity>()
-                    for (response in response.body()!!.results) {
+                    response.body()!!.results.forEach { data ->
                         val item = ListMovieEntity(
-                            response.id,
-                            response.title,
-                            response.voteAverage,
-                            response.voteCount,
-                            response.posterPath)
+                            data.id,
+                            data.title,
+                            data.voteAverage,
+                            data.voteCount,
+                            data.posterPath
+                        )
                         movieList.add(item)
                     }
                     callback.onAllMoviesReceived(movieList)
@@ -122,13 +126,14 @@ class RemoteDataSource {
 
                 if (response.isSuccessful) {
                     val tvShowList = ArrayList<ListTvShowEntity>()
-                    for (response in response.body()!!.results) {
+                    response.body()!!.results.forEach { data ->
                         val item = ListTvShowEntity(
-                            response.id,
-                            response.name,
-                            response.voteAverage,
-                            response.voteCount,
-                            response.posterPath)
+                            data.id,
+                            data.name,
+                            data.voteAverage,
+                            data.voteCount,
+                            data.posterPath
+                        )
                         tvShowList.add(item)
                     }
                     callback.onAllTvShowReceived(tvShowList)

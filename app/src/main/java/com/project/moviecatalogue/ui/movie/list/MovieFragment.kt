@@ -2,12 +2,15 @@ package com.project.moviecatalogue.ui.movie.list
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import com.project.moviecatalogue.R
+import com.project.moviecatalogue.data.source.local.entity.ListMovieEntity
 import com.project.moviecatalogue.databinding.FragmentMovieBinding
 import com.project.moviecatalogue.ui.movie.viewmodel.MovieViewModel
 import com.project.moviecatalogue.viewmodel.ViewModelFactory
@@ -15,8 +18,11 @@ import com.project.moviecatalogue.viewmodel.ViewModelFactory
 class MovieFragment : Fragment() {
 
     private lateinit var fragmentMovieBinding: FragmentMovieBinding
+    private lateinit var listMovieEntity: List<ListMovieEntity>
+    private val movieAdapter = MovieAdapter()
+    private var status: Boolean = false
 
-    companion object{
+    companion object {
         private const val TAG = "MovieFragment"
     }
 
@@ -32,45 +38,89 @@ class MovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
 
-            fragmentMovieBinding.progressBar.visibility = View.VISIBLE
-            fragmentMovieBinding.layoutDataKosong.visibility = View.GONE
-            fragmentMovieBinding.rvMovie.visibility = View.GONE
+            loadData()
 
-            val factory = ViewModelFactory.getInstance()
+            val factory = ViewModelFactory.getInstance(requireContext())
             val movieViewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
 
             movieViewModel.loadPopularMovie().observe(viewLifecycleOwner, { listMovie ->
-
-                if (listMovie == null) {
-                    Log.i(TAG, "onChange: null")
-                    fragmentMovieBinding.progressBar.visibility = View.VISIBLE
-                    fragmentMovieBinding.layoutDataKosong.visibility = View.GONE
-                    fragmentMovieBinding.rvMovie.visibility = View.GONE
+                listMovieEntity = listMovie
+                if (listMovie.isEmpty()) {
+                    Log.i(TAG, "onChange: empty")
+                    dataEmpty()
                 } else {
-                    if (listMovie.isEmpty()) {
-                        Log.i(TAG, "onChange: empty")
-                        fragmentMovieBinding.layoutDataKosong.visibility = View.VISIBLE
-                        fragmentMovieBinding.progressBar.visibility = View.GONE
-                        fragmentMovieBinding.rvMovie.visibility = View.GONE
-                    } else {
-                        Log.i(TAG, "onChange: not empty")
-                        fragmentMovieBinding.layoutDataKosong.visibility = View.GONE
-                        fragmentMovieBinding.progressBar.visibility = View.GONE
-                        fragmentMovieBinding.rvMovie.visibility = View.VISIBLE
+                    Log.i(TAG, "onChange: not empty")
+                    dataLoaded()
 
-                        val movieAdapter = MovieAdapter()
-                        movieAdapter.setMovies(listMovie)
-                        with(fragmentMovieBinding.rvMovie) {
-                            layoutManager = LinearLayoutManager(context)
-                            setHasFixedSize(true)
-                            adapter = movieAdapter
-                        }
+                    movieAdapter.setMovies(listMovie)
+                    with(fragmentMovieBinding.rvMovie) {
+                        layoutManager = LinearLayoutManager(context)
+                        setHasFixedSize(true)
+                        adapter = movieAdapter
                     }
                 }
-
-                val movieAdapter = MovieAdapter()
-                movieAdapter.setMovies(listMovie)
             })
+
+            fragmentMovieBinding.apply {
+                topAppBar.setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.sort -> {
+                            status = !status
+                            sortData(status)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+            }
         }
+    }
+
+    private fun sortData(state: Boolean) {
+        movieAdapter.sortData(state)
+        setSortState(state)
+    }
+
+    private fun setSortState(state: Boolean) {
+        if (state) {
+            showSnackBar(getString(R.string.sorted))
+            fragmentMovieBinding.topAppBar.menu.findItem(R.id.sort).setIcon(R.drawable.ic_restore)
+        } else {
+            showSnackBar(getString(R.string.not_sorted))
+            fragmentMovieBinding.topAppBar.menu.findItem(R.id.sort)
+                .setIcon(R.drawable.ic_sort_by_alpha)
+        }
+    }
+
+    private fun loadData() {
+        fragmentMovieBinding.apply {
+            progressBar.visibility = View.VISIBLE
+            layoutDataKosong.visibility = View.GONE
+            rvMovie.visibility = View.GONE
+        }
+    }
+
+    private fun dataEmpty() {
+        fragmentMovieBinding.apply {
+            layoutDataKosong.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
+            rvMovie.visibility = View.GONE
+        }
+    }
+
+    private fun dataLoaded() {
+        fragmentMovieBinding.apply {
+            layoutDataKosong.visibility = View.GONE
+            progressBar.visibility = View.GONE
+            rvMovie.visibility = View.VISIBLE
+        }
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(
+            fragmentMovieBinding.viewParent,
+            message, Snackbar.LENGTH_SHORT
+        )
+            .show()
     }
 }

@@ -1,23 +1,31 @@
 package com.project.moviecatalogue.ui.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.paging.DataSource
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.verify
-import com.project.moviecatalogue.data.source.remote.repository.RemoteDataSource
+import com.project.moviecatalogue.data.source.local.LocalDataSource
+import com.project.moviecatalogue.data.source.local.entity.DetailMovieEntity
+import com.project.moviecatalogue.data.source.local.entity.DetailTvShowEntity
+import com.project.moviecatalogue.data.source.remote.RemoteDataSource
 import com.project.moviecatalogue.ui.utils.LiveDataTestUtil
+import com.project.moviecatalogue.ui.utils.PagedListUtil
 import com.project.moviecatalogue.utils.DataDummy
-import org.junit.Assert.*
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 
 class CatalogRepositoryTest {
 
-    private val remote = Mockito.mock(RemoteDataSource::class.java)
-    private val catalogRepository = FakeCatalogRepository(remote)
+    private val remote = mock(RemoteDataSource::class.java)
+    private val local = mock(LocalDataSource::class.java)
+    private val catalogRepository = FakeCatalogRepository(remote, local)
 
     private val listMovieResponse = DataDummy.generateDummyListMovie()
     private val movieId = listMovieResponse[1].id
@@ -31,6 +39,7 @@ class CatalogRepositoryTest {
 
     @Test
     fun getPopularMovies() {
+
         runBlocking {
             doAnswer {invocation ->
                 (invocation.arguments[0] as RemoteDataSource.LoadPopularMoviesCallback).onAllMoviesReceived(listMovieResponse)
@@ -103,6 +112,32 @@ class CatalogRepositoryTest {
 
         assertNotNull(data)
         assertEquals(detailTvShowResponse.id, data.id)
+    }
+
+    @Test
+    fun getListFavoriteMovies() {
+        val dataSourceFactory =
+            mock(DataSource.Factory::class.java) as DataSource.Factory<Int, DetailMovieEntity>
+        `when`(local.getListFavoriteMovies()).thenReturn(dataSourceFactory)
+        catalogRepository.getListFavoriteMovies()
+
+        val movieEntity = PagedListUtil.mockPagedList(DataDummy.generateDummyListMovie())
+        verify(local).getListFavoriteMovies()
+        assertNotNull(movieEntity)
+        assertEquals(listMovieResponse.size, movieEntity.size)
+    }
+
+    @Test
+    fun getListFavoriteTvShow() {
+        val dataSourceFactory =
+            mock(DataSource.Factory::class.java) as DataSource.Factory<Int, DetailTvShowEntity>
+        `when`(local.getListFavoriteTvShow()).thenReturn(dataSourceFactory)
+        catalogRepository.getListFavoriteTvShow()
+
+        val tvShowEntity = PagedListUtil.mockPagedList(DataDummy.generateDummyListTvShow())
+        verify(local).getListFavoriteTvShow()
+        assertNotNull(tvShowEntity)
+        assertEquals(listTvShowResponse.size, tvShowEntity.size)
     }
 
 }
